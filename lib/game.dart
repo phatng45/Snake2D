@@ -16,6 +16,7 @@ class _GameState extends State<Game> {
     return      BonfireWidget (
       map: WorldMapByTiled(
           "map/map.json",
+          forceTileSize: Vector2(32,32),
           objectsBuilder: {
             "ghost_red": (properties) => Game.redGhost,
             "ghost_yellow": (properties) => Game.yellowGhost,
