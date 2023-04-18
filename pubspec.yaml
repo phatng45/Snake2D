@@ -25,3 +25,7 @@ flutter:
   assets:
     - assets/images/
     - assets/jsons/
+    - assets/images/
+    - assets/images/map/
+    - assets/images/snake/
+    - assets/images/fruit/

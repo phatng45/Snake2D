@@ -1,6 +1,7 @@
 import 'package:bonfire/bonfire.dart';
+import '../resources/game_sprites.dart';
 
-import '../resources/sprite_sheet.dart';
+
 
 class Fruit extends GameDecoration with Sensor {
   Fruit.withSprite(Vector2 position, Vector2 size)

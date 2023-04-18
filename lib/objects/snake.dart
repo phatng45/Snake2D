@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
+import 'package:snake_2d/resources/game_sprites.dart';
 import 'fruit.dart';
 
 class Snake extends SimplePlayer with ObjectCollision {
@@ -18,7 +18,14 @@ class Snake extends SimplePlayer with ObjectCollision {
   int lifeAsInt = 3;
 
   Snake(Vector2 position, Vector2 size)
-      : super(speed: 60, position: position, size: size) {
+      : super(
+          speed: 60,
+          position: position,
+          size: size,
+          animation: SimpleDirectionAnimation(
+              idleRight: GameSprites.snakeHeadRight,
+              runRight: GameSprites.snakeHeadRight),
+        ) {
     setupCollision(CollisionConfig(collisions: [
       CollisionArea.rectangle(size: Vector2(28, 28), align: Vector2(2, 2))
     ]));
@@ -60,10 +67,6 @@ class Snake extends SimplePlayer with ObjectCollision {
 
       case MovementDirection.right:
         moveRight(speed);
-        break;
-
-      default:
-        idle();
         break;
     }
   }

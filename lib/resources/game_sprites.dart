@@ -4,16 +4,18 @@ class GameSprites {
   static Future<Sprite> get apple => Sprite.load("images/fruit/apple.png",
       srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
 
-  static Future<Sprite> get snakeHeadDown =>
-      Sprite.load("images/snake/head_down.png",
-          srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
+
+
+  static Future<SpriteAnimation> get snakeHeadRight => SpriteAnimation.load("snake/head_right.png",
+      SpriteAnimationData.sequenced(
+          amount: 1,
+          stepTime: .2,
+          textureSize: Vector2(40, 40),
+          texturePosition: Vector2(0,0)
+      ));
 
   static Future<Sprite> get snakeHeadLeft =>
       Sprite.load("images/snake/head_left.png",
-          srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
-
-  static Future<Sprite> get snakeHeadRight =>
-      Sprite.load("images/snake/head_right.png",
           srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
 
   static Future<Sprite> get snakeHeadUp =>
