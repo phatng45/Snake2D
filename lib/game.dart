@@ -6,9 +6,13 @@ import 'objects/snake.dart';
 class Game extends StatefulWidget {
   const Game({Key? key}) : super(key: key);
 
-  static final Vector2 playerInitialPosition = WorldPos(6, 8);
+  static final Vector2 playerInitialPosition = WorldGrid(6, 8);
 
-  static Vector2 WorldPos(int x, int y) {
+  static bool IsInWorldGrid(double x, double y) {
+    return (x % 32 == 0) && (y % 32 == 0);
+  }
+
+  static Vector2 WorldGrid(double x, double y) {
     return Vector2(x * 32, y * 32);
   }
 

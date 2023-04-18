@@ -3,37 +3,36 @@ import 'dart:math';
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:snake_2d/game.dart';
 import 'package:snake_2d/resources/game_sprites.dart';
 
 import 'fruit.dart';
 
 class Snake extends SimplePlayer with ObjectCollision {
   MovementDirection _currentMovementDirection = MovementDirection.none;
-
-  bool isPacmanDead = false;
   bool canMove = true;
 
   int _score = 0;
 
   int get score => _score;
-  int lifeAsInt = 3;
+
 
   Snake(Vector2 position, Vector2 size)
       : super(
-          speed: 120,
-          position: position,
-          size: size,
-          animation: SimpleDirectionAnimation(
-              idleRight: GameSprites.snakeHeadRight,
-              idleUp: GameSprites.snakeHeadUp,
-              idleDown: GameSprites.snakeHeadDown,
-              idleLeft: GameSprites.snakeHeadLeft,
-              runRight: GameSprites.snakeHeadRight,
-              runUp: GameSprites.snakeHeadUp,
-              runDown: GameSprites.snakeHeadDown,
-              runLeft: GameSprites.snakeHeadLeft,
-              eightDirection: false),
-        ) {
+    speed: 120,
+    position: position,
+    size: size,
+    animation: SimpleDirectionAnimation(
+        idleRight: GameSprites.snakeHeadRight,
+        idleUp: GameSprites.snakeHeadUp,
+        idleDown: GameSprites.snakeHeadDown,
+        idleLeft: GameSprites.snakeHeadLeft,
+        runRight: GameSprites.snakeHeadRight,
+        runUp: GameSprites.snakeHeadUp,
+        runDown: GameSprites.snakeHeadDown,
+        runLeft: GameSprites.snakeHeadLeft,
+        eightDirection: false),
+  ) {
     setupCollision(CollisionConfig(collisions: [
       CollisionArea.rectangle(size: Vector2(28, 28), align: Vector2(2, 2))
     ]));
@@ -43,23 +42,15 @@ class Snake extends SimplePlayer with ObjectCollision {
   void die() async {
     canMove = false;
     enableCollision(false);
-    // final dieAnimation = await PacmanAnimations.playerDie;
-    lifeAsInt--;
-    // await animation?.playOnce(dieAnimation, onFinish: () {
-    //   animation?.opacity = 0;
-    //   idle();
-    //   isVisible = false;
-    //   isPacmanDead = true;
-    //   _currentMovementDirection = MovementDirection.none;
-    // });
   }
 
   void increaseScore(int score) {
     _score += score;
   }
 
-  void _movePlayer() {
-    if (!canMove) return;
+  void _getPlayerInput() {
+    if(!canMove) return;
+
     switch (_currentMovementDirection) {
       case MovementDirection.down:
         moveDown(speed);
@@ -115,7 +106,8 @@ class Snake extends SimplePlayer with ObjectCollision {
 
   @override
   void update(double dt) {
-    _movePlayer();
+    if (!canMove) return;
+    _getPlayerInput();
     super.update(dt);
   }
 }
