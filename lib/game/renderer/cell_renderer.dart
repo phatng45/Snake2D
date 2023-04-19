@@ -70,18 +70,6 @@ class CellRenderer {
       CellType cellType, Canvas canvas, Vector2? location, int cellSize) {
     if (cellType == CellType.empty) return;
     _render(cellTypeToSprite![cellType]!, canvas, location, cellSize);
-    // switch (cellType) {
-    //
-    //
-    //   case CellType.snakeBody:
-    //     _render(snakeHeadLeft, canvas, location, cellSize);
-    //     break;
-    //   case CellType.apple:
-    //     _render(apple, canvas, location, cellSize);
-    //     break;
-    //   case CellType.empty:
-    //     break;
-    // }
   }
 
   static void _render(Sprite sprite, Canvas canvas, location, cellSize) {
