@@ -2,8 +2,6 @@ import 'dart:ui';
 
 import 'package:flame/components.dart';
 import 'package:flame/input.dart';
-import 'package:flame/palette.dart';
-import 'package:snake_2d/game/renderer/cell_renderer.dart';
 
 import '../config/game_config.dart';
 import '../config/styles.dart';
@@ -53,7 +51,8 @@ class World extends DynamicFpsPositionComponent with HasGameRef<SnakeGame> {
   void render(Canvas canvas) {
     if (gameOver) {
       canvas.drawRect(
-          Rect.fromLTRB(2, 2, gameRef.canvasSize.x - 2, gameRef.canvasSize.y - 2),
+          Rect.fromLTRB(
+              2, 2, gameRef.canvasSize.x - 2, gameRef.canvasSize.y - 2),
           Styles.gameOver);
     }
   }
@@ -66,15 +65,13 @@ class World extends DynamicFpsPositionComponent with HasGameRef<SnakeGame> {
   void _initializeSnake() {
     var headIndex = GameConfig.headIndex;
     var snakeLength = GameConfig.initialSnakeLength;
-
-    for (int i = 0; i < snakeLength; i++) {
-      var snakePart =
-          _grid.findCell(headIndex.x.toInt() - i, headIndex.y.toInt());
-      _snake.addCell(snakePart);
-      if (i == 0) {
-        _snake.setHead(snakePart);
-      }
-    }
+    var head = _grid.findCell(headIndex.x.toInt(), headIndex.y.toInt());
+    var firstBody =
+        _grid.findCell(headIndex.x.toInt() - 1, headIndex.y.toInt());
+    var tail = _grid.findCell(headIndex.x.toInt() - 2, headIndex.y.toInt());
+    _snake.setHead(head);
+    _snake.setFirstBody(firstBody);
+    _snake.addCell(head, firstBody, tail);
   }
 
   //TODO use vector addition instead of a switch

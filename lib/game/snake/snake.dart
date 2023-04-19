@@ -14,16 +14,17 @@ class Snake {
 
   Direction direction = Direction.right;
   Cell head = Cell.zero;
+  Cell firstBody = Cell.zero;
 
   void move(Cell nextCell) {
     _removeLast();
-    head = nextCell;
-    _addFirst(head);
+    grow(nextCell);
   }
 
   void grow(Cell nextCell) {
+    _addFirst(nextCell, head, firstBody);
     head = nextCell;
-    _addFirst(head);
+    firstBody = head;
   }
 
   bool checkCrash(Cell nextCell) {
@@ -38,6 +39,15 @@ class Snake {
 
   void setHead(Cell cell) {
     head = cell;
+    cell.cellType = CellType.snakeHeadRight;
+    _add(SnakeBodyPart(cell));
+
+  }
+
+  void setFirstBody (Cell cell){
+    firstBody = cell;
+    cell.cellType = CellType.snakeBodyHorizontal;
+    _add(SnakeBodyPart(cell));
   }
 
   bool isHorizontal() {
@@ -48,16 +58,16 @@ class Snake {
     return reference - head.location;
   }
 
-  void addCell(Cell cell) {
-    _add(SnakeBodyPart.fromCell(cell));
+  void addCell(Cell next, Cell current, Cell previous) {
+    _add(SnakeBodyPart.fromCell(next, current, previous));
   }
 
   void _add(SnakeBodyPart part) {
     snakeBody.add(part);
   }
 
-  void _addFirst(Cell cell) {
-    snakeBody.addFirst(SnakeBodyPart.fromCell(cell));
+  void _addFirst(Cell cell, Cell pCell, Cell ppCell) {
+    snakeBody.addFirst(SnakeBodyPart.fromCell(cell, pCell, ppCell));
   }
 
   void _removeLast() {

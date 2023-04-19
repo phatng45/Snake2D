@@ -43,9 +43,9 @@ class CellRenderer {
     GameSprites.snakeBodyBottomRight
         .then((value) => snakeBodyBottomRight = value);
     GameSprites.snakeBodyVertical.then((value) => snakeBodyVertical = value);
-    GameSprites.snakeBodyHorizontal
-        .then((value) {snakeBodyHorizontal = value;
-        cellTypeToSprite = {
+    GameSprites.snakeBodyHorizontal.then((value) {
+      snakeBodyHorizontal = value;
+      cellTypeToSprite = {
         CellType.apple: apple,
         CellType.snakeBody: snakeBodyTopRight,
         CellType.snakeHeadLeft: snakeHeadLeft,
@@ -62,10 +62,8 @@ class CellRenderer {
         CellType.snakeBodyBottomRight: snakeBodyBottomRight,
         CellType.snakeBodyVertical: snakeBodyVertical,
         CellType.snakeBodyHorizontal: snakeBodyHorizontal,
-        };}
-        );
-
-
+      };
+    });
   }
 
   static void render(
