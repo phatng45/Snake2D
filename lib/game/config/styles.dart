@@ -16,4 +16,6 @@ class Styles {
   static Paint gameOver = BasicPalette.red.paint()
     ..style = PaintingStyle.stroke
     ..strokeWidth = 10;
+
+  static Paint grass3 =const PaletteEntry(Color(0xFF578a34)).paint();
 }

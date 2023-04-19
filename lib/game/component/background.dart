@@ -23,26 +23,13 @@ class BackGround extends PositionComponent with HasGameRef<SnakeGame> {
   @override
   void render(Canvas canvas) {
     _drawGrid(canvas);
-    // _drawVerticalLines(canvas);
-    // _drawHorizontalLines(canvas);
-  }
-
-  void _drawVerticalLines(Canvas c) {
-    for (double x = start.dx; x <= end.dx; x += cellSize) {
-      c.drawLine(Offset(x, start.dy), Offset(x, end.dy), Styles.grass2);
-    }
-  }
-
-  void _drawHorizontalLines(Canvas c) {
-    for (double y = start.dy; y <= end.dy; y += cellSize) {
-      c.drawLine(Offset(start.dx, y), Offset(end.dx, y), Styles.grass2);
-    }
   }
 
   double offsetX = 22;
   double offsetY = 7;
 
   void _drawGrid(Canvas c) {
+    c.drawRect(Rect.fromPoints(start, end), Styles.grass3);
     for (double x = 0; x <= GameConfig.rows; x++) {
       for (double y = 0; y <= GameConfig.columns; y++) {
         c.drawRect(
