@@ -69,13 +69,16 @@ class CellRenderer {
   static void render(
       CellType cellType, Canvas canvas, Vector2? location, int cellSize) {
     if (cellType == CellType.empty) return;
-    _render(cellTypeToSprite![cellType]!, canvas, location, cellSize);
+
+    _render(cellType, canvas, location, cellSize);
   }
 
-  static void _render(Sprite sprite, Canvas canvas, location, cellSize) {
-    sprite.render(canvas,
+  static void _render(CellType cellType, Canvas canvas, location, cellSize) {
+    cellTypeToSprite![cellType]!.render(canvas,
         position: location,
-        size: Vector2(cellSize * 1.0, cellSize * 1.0),
+        size: cellType == CellType.apple
+            ? Vector2(cellSize * 1.3, cellSize * 1.3)
+            : Vector2(cellSize * 1.1, cellSize * 1.1),
         anchor: Anchor.topLeft);
   }
 

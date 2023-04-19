@@ -2,7 +2,6 @@ import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:snake_2d/game/config/game_config.dart';
 
-import '../../resources/game_sprites.dart';
 import '../config/styles.dart';
 import '../snake_game.dart';
 
@@ -24,8 +23,8 @@ class BackGround extends PositionComponent with HasGameRef<SnakeGame> {
   @override
   void render(Canvas canvas) {
     _drawGrid(canvas);
-    _drawVerticalLines(canvas);
-    _drawHorizontalLines(canvas);
+    // _drawVerticalLines(canvas);
+    // _drawHorizontalLines(canvas);
   }
 
   void _drawVerticalLines(Canvas c) {
@@ -40,13 +39,17 @@ class BackGround extends PositionComponent with HasGameRef<SnakeGame> {
     }
   }
 
+  double offsetX = 22;
+  double offsetY = 7;
+
   void _drawGrid(Canvas c) {
-    c.drawRect(Rect.fromPoints(start, end), Styles.grass1);
     for (double x = 0; x <= GameConfig.rows; x++) {
       for (double y = 0; y <= GameConfig.columns; y++) {
         c.drawRect(
-            Rect.fromPoints(Offset(y * cellSize, x * cellSize),
-                Offset(y * cellSize + cellSize, x * cellSize + cellSize)),
+            Rect.fromPoints(
+                Offset(y * cellSize + offsetY, x * cellSize + offsetX),
+                Offset(y * cellSize + cellSize + offsetY,
+                    x * cellSize + cellSize + offsetX)),
             (x + y) % 2 == 0 ? Styles.grass1 : Styles.grass2);
       }
     }
