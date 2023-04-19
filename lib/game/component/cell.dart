@@ -8,7 +8,6 @@ import '../snake_game.dart';
 enum CellType {
   empty,
   apple,
-  snakeBody,
   snakeHeadLeft,
   snakeHeadRight,
   snakeHeadUp,
@@ -23,10 +22,6 @@ enum CellType {
   snakeBodyBottomRight,
   snakeBodyVertical,
   snakeBodyHorizontal
-
-// snakeHeadLeft,snakeHeadRight,snakeHeadTop, snakeHeadBottom,
-// snakeHeadLeft,snakeHeadRight,snakeHeadTop, snakeHeadBottom,
-//
 }
 
 class Cell extends PositionComponent with HasGameRef<SnakeGame> {

@@ -17,7 +17,7 @@ class Snake {
   void move(Cell nextCell) {
     _removeLast();
     grow(nextCell);
-    // _updateTail();
+    // _updateTail(); // BUG
   }
 
   void grow(Cell nextCell) {
@@ -74,29 +74,69 @@ class Snake {
   }
 
   void _updateTail() {
-    var preciousLastCellType = snakeBody.last.previous?.cell.cellType;
-    switch (preciousLastCellType) {
+    var previousLastCellType = snakeBody.last.previous?.cell.cellType;
+    var tail = snakeBody.last.cell;
+
+    switch (previousLastCellType) {
       case CellType.snakeHeadLeft:
       case CellType.snakeBodyBottomRight:
-        snakeBody.last.cell.cellType = CellType.snakeTailRight;
+
+      if(head.cellType == CellType.snakeHeadDown) {
+        tail.cellType = CellType.snakeTailRight;
+      } else {
+        tail.cellType = CellType.snakeTailDown;
+      }
+      // tail.cellType = CellType.snakeTailRight;
         break;
       case CellType.snakeHeadRight:
       case CellType.snakeBodyTopLeft:
-        snakeBody.last.cell.cellType = CellType.snakeTailLeft;
+
+
+      if(head.cellType == CellType.snakeHeadUp) {
+        tail.cellType = CellType.snakeTailLeft;
+      } else {
+        tail.cellType = CellType.snakeTailUp;
+      }
+      // tail.cellType = CellType.snakeTailLeft;
         break;
       case CellType.snakeBodyBottomLeft:
       case CellType.snakeHeadUp:
-        snakeBody.last.cell.cellType = CellType.snakeTailDown;
+
+      if(head.cellType == CellType.snakeHeadLeft) {
+        tail.cellType = CellType.snakeTailDown;
+      } else {
+        tail.cellType = CellType.snakeTailLeft;
+      }
+
+      // tail.cellType = CellType.snakeTailDown;
+
+
         break;
       case CellType.snakeHeadDown:
       case CellType.snakeBodyTopRight:
+      if(head.cellType == CellType.snakeHeadRight) {
+        tail.cellType = CellType.snakeTailUp;
+      } else {
+        tail.cellType = CellType.snakeTailRight;
+      }
 
-        snakeBody.last.cell.cellType = CellType.snakeTailUp;
+      // tail.cellType = CellType.snakeTailUp;
         break;
 
       case CellType.snakeBodyVertical:
-        break;
+        if(head.cellType == CellType.snakeHeadUp) {
+          tail.cellType = CellType.snakeTailDown;
+        } else {
+          tail.cellType = CellType.snakeTailUp;
+        }
+
+          break;
       case CellType.snakeBodyHorizontal:
+        if(head.cellType == CellType.snakeHeadLeft) {
+          tail.cellType = CellType.snakeTailRight;
+        } else {
+          tail.cellType = CellType.snakeTailLeft;
+        }
         break;
     }
   }

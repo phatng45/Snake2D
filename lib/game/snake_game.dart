@@ -11,13 +11,13 @@ import 'snake/offsets.dart';
 class SnakeGame extends FlameGame with TapDetector {
   Grid grid = Grid(GameConfig.rows, GameConfig.columns, GameConfig.cellSize);
   World? world;
-  OffSets offSets = OffSets(Vector2.zero());
+  Offsets offSets = Offsets(Vector2.zero());
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
 
-    offSets = OffSets(canvasSize);
+    offSets = Offsets(canvasSize);
 
     add(BackGround(GameConfig.cellSize));
 

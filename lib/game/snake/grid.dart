@@ -10,7 +10,6 @@ class Grid {
 
   final int _rows;
   final int _columns;
-  late final Snake _snake;
 
   List<List<Cell>> _cells = List.empty(growable: true);
 

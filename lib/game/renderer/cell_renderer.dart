@@ -6,64 +6,26 @@ import '../component/cell.dart';
 import '../config/game_config.dart';
 
 class CellRenderer {
-  static Sprite? apple;
-  static Sprite? snakeBody;
-  static Sprite? snakeHeadLeft;
-  static Sprite? snakeHeadRight;
-  static Sprite? snakeHeadUp;
-  static Sprite? snakeHeadDown;
-  static Sprite? snakeTailLeft;
-  static Sprite? snakeTailRight;
-  static Sprite? snakeTailUp;
-  static Sprite? snakeTailDown;
-  static Sprite? snakeBodyTopLeft;
-  static Sprite? snakeBodyTopRight;
-  static Sprite? snakeBodyBottomLeft;
-  static Sprite? snakeBodyBottomRight;
-  static Sprite? snakeBodyVertical;
-  static Sprite? snakeBodyHorizontal;
-
   static Map<CellType, Sprite?>? cellTypeToSprite;
 
-  static void getSprite() {
-    // GameSprites. snakeBody;
-    GameSprites.apple.then((value) => apple = value);
-    GameSprites.snakeHeadLeft.then((value) => snakeHeadLeft = value);
-    GameSprites.snakeHeadRight.then((value) => snakeHeadRight = value);
-    GameSprites.snakeHeadUp.then((value) => snakeHeadUp = value);
-    GameSprites.snakeHeadDown.then((value) => snakeHeadDown = value);
-    GameSprites.snakeTailLeft.then((value) => snakeTailLeft = value);
-    GameSprites.snakeTailRight.then((value) => snakeTailRight = value);
-    GameSprites.snakeTailUp.then((value) => snakeTailUp = value);
-    GameSprites.snakeTailDown.then((value) => snakeTailDown = value);
-    GameSprites.snakeBodyTopLeft.then((value) => snakeBodyTopLeft = value);
-    GameSprites.snakeBodyTopRight.then((value) => snakeBodyTopRight = value);
-    GameSprites.snakeBodyBottomLeft
-        .then((value) => snakeBodyBottomLeft = value);
-    GameSprites.snakeBodyBottomRight
-        .then((value) => snakeBodyBottomRight = value);
-    GameSprites.snakeBodyVertical.then((value) => snakeBodyVertical = value);
-    GameSprites.snakeBodyHorizontal.then((value) {
-      snakeBodyHorizontal = value;
-      cellTypeToSprite = {
-        CellType.apple: apple,
-        CellType.snakeBody: snakeBodyTopRight,
-        CellType.snakeHeadLeft: snakeHeadLeft,
-        CellType.snakeHeadRight: snakeHeadRight,
-        CellType.snakeHeadUp: snakeHeadUp,
-        CellType.snakeHeadDown: snakeHeadDown,
-        CellType.snakeTailLeft: snakeTailLeft,
-        CellType.snakeTailRight: snakeTailRight,
-        CellType.snakeTailUp: snakeTailUp,
-        CellType.snakeTailDown: snakeTailDown,
-        CellType.snakeBodyTopLeft: snakeBodyTopLeft,
-        CellType.snakeBodyTopRight: snakeBodyTopRight,
-        CellType.snakeBodyBottomLeft: snakeBodyBottomLeft,
-        CellType.snakeBodyBottomRight: snakeBodyBottomRight,
-        CellType.snakeBodyVertical: snakeBodyVertical,
-        CellType.snakeBodyHorizontal: snakeBodyHorizontal,
-      };
-    });
+  static void getSprite() async {
+    cellTypeToSprite = {
+      CellType.apple: await GameSprites.apple,
+      CellType.snakeHeadLeft: await GameSprites.snakeHeadLeft,
+      CellType.snakeHeadRight: await GameSprites.snakeHeadRight,
+      CellType.snakeHeadUp: await GameSprites.snakeHeadUp,
+      CellType.snakeHeadDown: await GameSprites.snakeHeadDown,
+      CellType.snakeTailLeft: await GameSprites.snakeTailLeft,
+      CellType.snakeTailRight: await GameSprites.snakeTailRight,
+      CellType.snakeTailUp: await GameSprites.snakeTailUp,
+      CellType.snakeTailDown: await GameSprites.snakeTailDown,
+      CellType.snakeBodyTopLeft: await GameSprites.snakeBodyTopLeft,
+      CellType.snakeBodyTopRight: await GameSprites.snakeBodyTopRight,
+      CellType.snakeBodyBottomLeft: await GameSprites.snakeBodyBottomLeft,
+      CellType.snakeBodyBottomRight: await GameSprites.snakeBodyBottomRight,
+      CellType.snakeBodyVertical: await GameSprites.snakeBodyVertical,
+      CellType.snakeBodyHorizontal: await GameSprites.snakeBodyHorizontal,
+    };
   }
 
   static void render(

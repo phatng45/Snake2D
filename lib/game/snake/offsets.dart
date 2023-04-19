@@ -2,11 +2,11 @@ import 'package:flame/components.dart';
 
 import '../config/game_config.dart';
 
-class OffSets {
+class Offsets {
   Vector2 start = Vector2.zero();
   Vector2 end = Vector2.zero();
 
-  OffSets(Vector2 canvasSize) {
+  Offsets(Vector2 canvasSize) {
     var gameAreaX = GameConfig.cellSize * GameConfig.columns;
     var gameAreaY = GameConfig.cellSize * GameConfig.rows;
 

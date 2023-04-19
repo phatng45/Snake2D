@@ -5,7 +5,7 @@ import 'package:flame/input.dart';
 
 import '../config/game_config.dart';
 import '../config/styles.dart';
-import '../snake/command_queue.dart';
+import '../system/command_queue.dart';
 import '../snake/grid.dart';
 import '../snake/snake.dart';
 import '../snake_game.dart';
