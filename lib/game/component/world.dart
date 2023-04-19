@@ -5,10 +5,10 @@ import 'package:flame/input.dart';
 
 import '../config/game_config.dart';
 import '../config/styles.dart';
-import '../system/command_queue.dart';
 import '../snake/grid.dart';
 import '../snake/snake.dart';
 import '../snake_game.dart';
+import '../system/command_queue.dart';
 import 'cell.dart';
 import 'dynamic_fps_position_component.dart';
 
@@ -30,20 +30,23 @@ class World extends DynamicFpsPositionComponent with HasGameRef<SnakeGame> {
 
       var nextCell = _getNextCell();
 
-      if (nextCell != Grid.border) {
-        if (_snake.checkCrash(nextCell)) {
-          gameOver = true;
-        } else {
-          if (nextCell.cellType == CellType.apple) {
-            _snake.grow(nextCell);
-            _grid.generateFood();
-          } else {
-            _snake.move(nextCell);
-          }
-        }
-      } else {
+      if (nextCell == Grid.border) {
         gameOver = true;
+        return;
       }
+
+      if (_snake.checkCrash(nextCell)) {
+        gameOver = true;
+        return;
+      }
+
+      if (nextCell.cellType != CellType.apple) {
+        _snake.move(nextCell);
+        return;
+      }
+
+      _snake.grow(nextCell);
+      _grid.generateFood();
     }
   }
 
