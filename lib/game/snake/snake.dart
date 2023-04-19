@@ -1,4 +1,3 @@
-
 import 'dart:collection';
 
 import 'package:flame/components.dart';
@@ -9,7 +8,6 @@ import '../component/cell.dart';
 enum Direction { up, right, down, left }
 
 class Snake {
-
   final LinkedList<SnakeBodyPart> snakeBody = LinkedList();
 
   Direction direction = Direction.right;
@@ -19,12 +17,13 @@ class Snake {
   void move(Cell nextCell) {
     _removeLast();
     grow(nextCell);
+    // _updateTail();
   }
 
   void grow(Cell nextCell) {
     _addFirst(nextCell, head, firstBody);
-    head = nextCell;
     firstBody = head;
+    head = nextCell;
   }
 
   bool checkCrash(Cell nextCell) {
@@ -41,10 +40,9 @@ class Snake {
     head = cell;
     cell.cellType = CellType.snakeHeadRight;
     _add(SnakeBodyPart(cell));
-
   }
 
-  void setFirstBody (Cell cell){
+  void setFirstBody(Cell cell) {
     firstBody = cell;
     cell.cellType = CellType.snakeBodyHorizontal;
     _add(SnakeBodyPart(cell));
@@ -73,5 +71,33 @@ class Snake {
   void _removeLast() {
     snakeBody.last.cell.cellType = CellType.empty;
     snakeBody.remove(snakeBody.last);
+  }
+
+  void _updateTail() {
+    var preciousLastCellType = snakeBody.last.previous?.cell.cellType;
+    switch (preciousLastCellType) {
+      case CellType.snakeHeadLeft:
+      case CellType.snakeBodyBottomRight:
+        snakeBody.last.cell.cellType = CellType.snakeTailRight;
+        break;
+      case CellType.snakeHeadRight:
+      case CellType.snakeBodyTopLeft:
+        snakeBody.last.cell.cellType = CellType.snakeTailLeft;
+        break;
+      case CellType.snakeBodyBottomLeft:
+      case CellType.snakeHeadUp:
+        snakeBody.last.cell.cellType = CellType.snakeTailDown;
+        break;
+      case CellType.snakeHeadDown:
+      case CellType.snakeBodyTopRight:
+
+        snakeBody.last.cell.cellType = CellType.snakeTailUp;
+        break;
+
+      case CellType.snakeBodyVertical:
+        break;
+      case CellType.snakeBodyHorizontal:
+        break;
+    }
   }
 }

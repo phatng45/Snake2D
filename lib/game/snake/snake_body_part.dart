@@ -17,31 +17,52 @@ class SnakeBodyPart extends LinkedListEntry<SnakeBodyPart> {
 
     if (nx == cx && ny > cy) {
       next.cellType = CellType.snakeHeadDown;
-      current.cellType = CellType.snakeBodyVertical;
+
+      if(cx > px){
+        current.cellType = CellType.snakeBodyBottomLeft;
+      }else if(cx< px){
+        current.cellType = CellType.snakeBodyBottomRight;
+      }else{
+        current.cellType = CellType.snakeBodyVertical;
+      }
+
+
     } else if (nx == cx && ny < cy) {
       next.cellType = CellType.snakeHeadUp;
-      current.cellType = CellType.snakeBodyVertical;
+
+      if(cx > px){
+        current.cellType = CellType.snakeBodyTopLeft;
+      }else if(cx< px){
+        current.cellType = CellType.snakeBodyTopRight;
+      }else{
+        current.cellType = CellType.snakeBodyVertical;
+      }
+
     } else if (nx > cx && ny == cy) {
       next.cellType = CellType.snakeHeadRight;
-      current.cellType = CellType.snakeBodyHorizontal;
+
+      if(cy > py){
+        current.cellType = CellType.snakeBodyTopRight;
+      }else if(cy< py){
+        current.cellType = CellType.snakeBodyBottomRight;
+      }else{
+        current.cellType = CellType.snakeBodyHorizontal;
+
+      }
+
     } else if (nx < cx && ny == cy) {
       next.cellType = CellType.snakeHeadLeft;
-      current.cellType = CellType.snakeBodyHorizontal;
+
+      if(cy > py){
+        current.cellType = CellType.snakeBodyTopLeft;
+      }else if(cy< py){
+        current.cellType = CellType.snakeBodyBottomLeft;
+      }else{
+        current.cellType = CellType.snakeBodyHorizontal;
+
+      }
     }
 
-    if (nx > px && ny > py) {
-      print(1);
-      current.cellType = CellType.snakeBodyTopLeft;
-    } else if (nx > px && ny < py) {      print(2);
-
-    current.cellType = CellType.snakeBodyBottomLeft;
-    } else if (nx < px && ny > py) {      print(3);
-
-    current.cellType = CellType.snakeBodyTopRight;
-    } else if (nx < px && ny < py) {      print(4);
-
-    current.cellType = CellType.snakeBodyBottomRight;
-    }
 
     return SnakeBodyPart(next);
   }
