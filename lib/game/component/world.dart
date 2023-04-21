@@ -1,11 +1,11 @@
-import 'dart:ui';
-
 import 'package:flame/components.dart';
 import 'package:flame/input.dart';
+import 'package:flutter/material.dart';
 
 import '../config/game_config.dart';
 import '../config/styles.dart';
 import '../snake/grid.dart';
+import '../snake/offsets.dart';
 import '../snake/snake.dart';
 import '../snake_game.dart';
 import '../system/command_queue.dart';
@@ -17,6 +17,16 @@ class World extends DynamicFpsPositionComponent with HasGameRef<SnakeGame> {
   final Snake _snake = Snake();
   final CommandQueue _commandQueue = CommandQueue();
 
+  int score = 0;
+  final TextPaint textPaint = TextPaint(
+    style: const TextStyle(
+      fontSize: 48.0,
+      fontFamily: 'Arial',
+      fontWeight: FontWeight.bold,
+    ),
+  );
+  final Vector2 scorePos = Offsets(Vector2.zero()).end + Vector2(0, -200);
+
   bool gameOver = false;
 
   World(this._grid) : super(GameConfig.fps) {
@@ -25,39 +35,49 @@ class World extends DynamicFpsPositionComponent with HasGameRef<SnakeGame> {
 
   @override
   void updateDynamic(double dt) {
-    if (!gameOver) {
-      _commandQueue.evaluateNextInput(_snake);
+    if (gameOver) return;
 
-      var nextCell = _getNextCell();
+    _commandQueue.evaluateNextInput(_snake);
 
-      if (nextCell == Grid.border) {
-        gameOver = true;
-        return;
-      }
+    var nextCell = _getNextCell();
 
-      if (_snake.checkCrash(nextCell)) {
-        gameOver = true;
-        return;
-      }
+    if (nextCell == Grid.border) {
+      gameOver = true;
+      return;
+    }
 
-      if (nextCell.cellType != CellType.apple) {
-        _snake.move(nextCell);
-        return;
-      }
+    if (_snake.checkCrash(nextCell)) {
+      gameOver = true;
+      return;
+    }
 
+    if (nextCell.cellType == CellType.apple) {
       _snake.grow(nextCell);
       _grid.generateFood();
+      score += 1;
+      return;
     }
+
+    _snake.move(nextCell);
   }
 
   @override
   void render(Canvas canvas) {
     if (gameOver) {
-      canvas.drawRect(
-          Rect.fromLTRB(
-              2, 2, gameRef.canvasSize.x - 2, gameRef.canvasSize.y - 2),
-          Styles.gameOver);
+      _renderGameOverBorder(canvas);
     }
+
+    _renderScore(canvas);
+  }
+
+  void _renderGameOverBorder(Canvas canvas) {
+    canvas.drawRect(
+        Rect.fromLTRB(2, 2, gameRef.canvasSize.x - 2, gameRef.canvasSize.y - 2),
+        Styles.gameOver);
+  }
+
+  void _renderScore(Canvas canvas) {
+    textPaint.render(canvas, score.toString(), scorePos, anchor: Anchor.center);
   }
 
   void onTapUp(TapUpInfo info) {

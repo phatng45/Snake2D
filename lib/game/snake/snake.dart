@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flame/components.dart';
+import 'package:flame/game.dart';
 import 'package:snake_2d/game/snake/snake_body_part.dart';
 
 import '../component/cell.dart';
