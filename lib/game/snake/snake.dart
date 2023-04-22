@@ -81,59 +81,54 @@ class Snake {
     switch (previousLastCellType) {
       case CellType.snakeHeadLeft:
       case CellType.snakeBodyBottomRight:
-
-      if(head.cellType == CellType.snakeHeadDown) {
-        tail.cellType = CellType.snakeTailRight;
-      } else {
-        tail.cellType = CellType.snakeTailDown;
-      }
-      // tail.cellType = CellType.snakeTailRight;
+        if (head.cellType == CellType.snakeHeadDown) {
+          tail.cellType = CellType.snakeTailRight;
+        } else {
+          tail.cellType = CellType.snakeTailDown;
+        }
+        // tail.cellType = CellType.snakeTailRight;
         break;
       case CellType.snakeHeadRight:
       case CellType.snakeBodyTopLeft:
-
-
-      if(head.cellType == CellType.snakeHeadUp) {
-        tail.cellType = CellType.snakeTailLeft;
-      } else {
-        tail.cellType = CellType.snakeTailUp;
-      }
-      // tail.cellType = CellType.snakeTailLeft;
+        if (head.cellType == CellType.snakeHeadUp) {
+          tail.cellType = CellType.snakeTailLeft;
+        } else {
+          tail.cellType = CellType.snakeTailUp;
+        }
+        // tail.cellType = CellType.snakeTailLeft;
         break;
       case CellType.snakeBodyBottomLeft:
       case CellType.snakeHeadUp:
+        if (head.cellType == CellType.snakeHeadLeft) {
+          tail.cellType = CellType.snakeTailDown;
+        } else {
+          tail.cellType = CellType.snakeTailLeft;
+        }
 
-      if(head.cellType == CellType.snakeHeadLeft) {
-        tail.cellType = CellType.snakeTailDown;
-      } else {
-        tail.cellType = CellType.snakeTailLeft;
-      }
-
-      // tail.cellType = CellType.snakeTailDown;
-
+        // tail.cellType = CellType.snakeTailDown;
 
         break;
       case CellType.snakeHeadDown:
       case CellType.snakeBodyTopRight:
-      if(head.cellType == CellType.snakeHeadRight) {
-        tail.cellType = CellType.snakeTailUp;
-      } else {
-        tail.cellType = CellType.snakeTailRight;
-      }
+        if (head.cellType == CellType.snakeHeadRight) {
+          tail.cellType = CellType.snakeTailUp;
+        } else {
+          tail.cellType = CellType.snakeTailRight;
+        }
 
-      // tail.cellType = CellType.snakeTailUp;
+        // tail.cellType = CellType.snakeTailUp;
         break;
 
       case CellType.snakeBodyVertical:
-        if(head.cellType == CellType.snakeHeadUp) {
+        if (head.cellType == CellType.snakeHeadUp) {
           tail.cellType = CellType.snakeTailDown;
         } else {
           tail.cellType = CellType.snakeTailUp;
         }
 
-          break;
+        break;
       case CellType.snakeBodyHorizontal:
-        if(head.cellType == CellType.snakeHeadLeft) {
+        if (head.cellType == CellType.snakeHeadLeft) {
           tail.cellType = CellType.snakeTailRight;
         } else {
           tail.cellType = CellType.snakeTailLeft;

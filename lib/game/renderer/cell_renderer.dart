@@ -36,7 +36,7 @@ class CellRenderer {
   }
 
   static void _render(CellType cellType, Canvas canvas, location, cellSize) {
-    cellTypeToSprite![cellType]!.render(canvas,
+    cellTypeToSprite?[cellType]?.render(canvas,
         position: location,
         size: cellType == CellType.apple
             ? Vector2(cellSize * 1.3, cellSize * 1.3)

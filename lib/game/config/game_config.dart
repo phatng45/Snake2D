@@ -18,7 +18,7 @@ class GameConfig {
   static final headIndex = Vector2(initialSnakeLength.toDouble(), 20);
 
   // Initial fps
-  static const fps = 5.0;
+  static const fps = 3.0;
 
   // Food radius offset, the empty space in the cell
   static const foodRadius = 5.0;

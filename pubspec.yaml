@@ -23,7 +23,6 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/jsons/
     - assets/images/map/
     - assets/images/snake/
     - assets/images/fruit/

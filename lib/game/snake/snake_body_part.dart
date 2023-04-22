@@ -18,51 +18,44 @@ class SnakeBodyPart extends LinkedListEntry<SnakeBodyPart> {
     if (nx == cx && ny > cy) {
       next.cellType = CellType.snakeHeadDown;
 
-      if(cx > px){
+      if (cx > px) {
         current.cellType = CellType.snakeBodyBottomLeft;
-      }else if(cx< px){
+      } else if (cx < px) {
         current.cellType = CellType.snakeBodyBottomRight;
-      }else{
+      } else {
         current.cellType = CellType.snakeBodyVertical;
       }
-
-
     } else if (nx == cx && ny < cy) {
       next.cellType = CellType.snakeHeadUp;
 
-      if(cx > px){
+      if (cx > px) {
         current.cellType = CellType.snakeBodyTopLeft;
-      }else if(cx< px){
+      } else if (cx < px) {
         current.cellType = CellType.snakeBodyTopRight;
-      }else{
+      } else {
         current.cellType = CellType.snakeBodyVertical;
       }
-
     } else if (nx > cx && ny == cy) {
       next.cellType = CellType.snakeHeadRight;
 
-      if(cy > py){
+      if (cy > py) {
         current.cellType = CellType.snakeBodyTopRight;
-      }else if(cy< py){
+      } else if (cy < py) {
         current.cellType = CellType.snakeBodyBottomRight;
-      }else{
+      } else {
         current.cellType = CellType.snakeBodyHorizontal;
-
       }
-
     } else if (nx < cx && ny == cy) {
       next.cellType = CellType.snakeHeadLeft;
 
-      if(cy > py){
+      if (cy > py) {
         current.cellType = CellType.snakeBodyTopLeft;
-      }else if(cy< py){
+      } else if (cy < py) {
         current.cellType = CellType.snakeBodyBottomLeft;
-      }else{
+      } else {
         current.cellType = CellType.snakeBodyHorizontal;
-
       }
     }
-
 
     return SnakeBodyPart(next);
   }
