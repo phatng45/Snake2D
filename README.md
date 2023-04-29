@@ -1,3 +1,3 @@
 # snake
 
-A Snake Game made with Bonfire Flutter Game Engine
+A Snake Game made with Flame Flutter Game Engine
