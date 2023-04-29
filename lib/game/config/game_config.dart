@@ -1,7 +1,6 @@
 import 'package:flame/components.dart';
 
 class GameConfig {
-
   // Defines the number of rows in the grid
   static const rows = 24;
 

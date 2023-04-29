@@ -1,5 +1,6 @@
 import 'package:flame/components.dart';
-import 'package:snake_2d/game/snake/snake.dart';
+
+import '../snake/snake.dart';
 
 class CommandQueue {
   final List<Vector2> touches = [];

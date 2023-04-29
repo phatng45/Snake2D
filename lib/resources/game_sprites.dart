@@ -1,164 +1,43 @@
 import 'package:flame/components.dart';
 
 class GameSprites {
-  static Future<Sprite> get apple => Sprite.load("fruit/apple.png",
-      srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
+  static Future<Sprite> get apple => _loadSprite("fruit/apple");
 
-  // static Future<SpriteAnimation> get snakeHeadRight => SpriteAnimation.load(
-  //     "snake/head_right.png",
-  //     SpriteAnimationData.sequenced(
-  //         amount: 1,
-  //         stepTime: .2,
-  //         textureSize: Vector2(40, 40),
-  //         texturePosition: Vector2(0, 0)));
-  //
-  // static Future<SpriteAnimation> get snakeHeadUp => SpriteAnimation.load(
-  //     "snake/head_up.png",
-  //     SpriteAnimationData.sequenced(
-  //         amount: 1,
-  //         stepTime: .2,
-  //         textureSize: Vector2(40, 40),
-  //         texturePosition: Vector2(0, 0)));
-  //
-  // static Future<SpriteAnimation> get snakeHeadDown => SpriteAnimation.load(
-  //     "snake/head_down.png",
-  //     SpriteAnimationData.sequenced(
-  //         amount: 1,
-  //         stepTime: .2,
-  //         textureSize: Vector2(40, 40),
-  //         texturePosition: Vector2(0, 0)));
-  //
-  // static Future<SpriteAnimation> get snakeHeadLeft => SpriteAnimation.load(
-  //     "snake/head_left.png",
-  //     SpriteAnimationData.sequenced(
-  //         amount: 1,
-  //         stepTime: .2,
-  //         textureSize: Vector2(40, 40),
-  //         texturePosition: Vector2(0, 0)));
-  //
-  // static Future<SpriteAnimation> get snakeBodyVertical => SpriteAnimation.load(
-  //     "snake/body_vertical.png",
-  //     SpriteAnimationData.sequenced(
-  //         amount: 1,
-  //         stepTime: .2,
-  //         textureSize: Vector2(40, 40),
-  //         texturePosition: Vector2(0, 0)));
-  //
-  // static Future<SpriteAnimation> get snakeBodyHorizontal =>
-  //     SpriteAnimation.load(
-  //         "snake/body_horizontal.png",
-  //         SpriteAnimationData.sequenced(
-  //             amount: 1,
-  //             stepTime: .2,
-  //             textureSize: Vector2(40, 40),
-  //             texturePosition: Vector2(0, 0)));
-  //
-  // static Future<SpriteAnimation> get snakeBodyTL => SpriteAnimation.load(
-  //     "snake/body_topleft.png",
-  //     SpriteAnimationData.sequenced(
-  //         amount: 1,
-  //         stepTime: .2,
-  //         textureSize: Vector2(40, 40),
-  //         texturePosition: Vector2(0, 0)));
-  //
-  // static Future<SpriteAnimation> get snakeBodyTR => SpriteAnimation.load(
-  //     "snake/body_topright.png",
-  //     SpriteAnimationData.sequenced(
-  //         amount: 1,
-  //         stepTime: .2,
-  //         textureSize: Vector2(40, 40),
-  //         texturePosition: Vector2(0, 0)));
-  //
-  // static Future<SpriteAnimation> get snakeBodyBL => SpriteAnimation.load(
-  //     "snake/body_bottomleft.png",
-  //     SpriteAnimationData.sequenced(
-  //         amount: 1,
-  //         stepTime: .2,
-  //         textureSize: Vector2(40, 40),
-  //         texturePosition: Vector2(0, 0)));
-  //
-  // static Future<SpriteAnimation> get snakeBodyBR => SpriteAnimation.load(
-  //     "snake/body_bottomright.png",
-  //     SpriteAnimationData.sequenced(
-  //         amount: 1,
-  //         stepTime: .2,
-  //         textureSize: Vector2(40, 40),
-  //         texturePosition: Vector2(0, 0)));
-  //
-  // static Future<SpriteAnimation> get snakeTailRight => SpriteAnimation.load(
-  //     "snake/tail_right.png",
-  //     SpriteAnimationData.sequenced(
-  //         amount: 1,
-  //         stepTime: .2,
-  //         textureSize: Vector2(40, 40),
-  //         texturePosition: Vector2(0, 0)));
-  //
-  // static Future<SpriteAnimation> get snakeTailUp => SpriteAnimation.load(
-  //     "snake/tail_up.png",
-  //     SpriteAnimationData.sequenced(
-  //         amount: 1,
-  //         stepTime: .2,
-  //         textureSize: Vector2(40, 40),
-  //         texturePosition: Vector2(0, 0)));
-  //
-  // static Future<SpriteAnimation> get snakeTailDown => SpriteAnimation.load(
-  //     "snake/tail_down.png",
-  //     SpriteAnimationData.sequenced(
-  //         amount: 1,
-  //         stepTime: .2,
-  //         textureSize: Vector2(40, 40),
-  //         texturePosition: Vector2(0, 0)));
-  //
-  // static Future<SpriteAnimation> get snakeTailLeft => SpriteAnimation.load(
-  //     "snake/tail_left.png",
-  //     SpriteAnimationData.sequenced(
-  //         amount: 1,
-  //         stepTime: .2,
-  //         textureSize: Vector2(40, 40),
-  //         texturePosition: Vector2(0, 0)));
+  static Future<Sprite> get snakeHeadDown => _loadSprite("snake/head_down");
 
-  static Future<Sprite> get snakeHeadDown =>
-      Sprite.load("snake/head_down.png",
-          srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
-  static Future<Sprite> get snakeHeadLeft =>
-      Sprite.load("snake/head_left.png",
-          srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
-  static Future<Sprite> get snakeHeadRight =>
-      Sprite.load("snake/head_right.png",
-          srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
-  static Future<Sprite> get snakeHeadUp =>
-      Sprite.load("snake/head_up.png",
-          srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
+  static Future<Sprite> get snakeHeadLeft => _loadSprite("snake/head_left");
+
+  static Future<Sprite> get snakeHeadRight => _loadSprite("snake/head_right");
+
+  static Future<Sprite> get snakeHeadUp => _loadSprite("snake/head_up");
+
   static Future<Sprite> get snakeBodyHorizontal =>
-      Sprite.load("snake/body_horizontal.png",
-          srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
+      _loadSprite("snake/body_horizontal");
+
   static Future<Sprite> get snakeBodyVertical =>
-      Sprite.load("snake/body_vertical.png",
-          srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
+      _loadSprite("snake/body_vertical");
 
+  static Future<Sprite> get snakeBodyTopLeft =>
+      _loadSprite("snake/body_topleft");
 
-          static Future<Sprite> get snakeBodyTopLeft =>
-          Sprite.load("snake/body_topleft.png",
-          srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
   static Future<Sprite> get snakeBodyTopRight =>
-      Sprite.load("snake/body_topright.png",
-          srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
+      _loadSprite("snake/body_topright");
+
   static Future<Sprite> get snakeBodyBottomLeft =>
-      Sprite.load("snake/body_bottomleft.png",
-          srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
+      _loadSprite("snake/body_bottomleft");
+
   static Future<Sprite> get snakeBodyBottomRight =>
-      Sprite.load("snake/body_bottomright.png",
-          srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
-  static Future<Sprite> get snakeTailDown =>
-      Sprite.load("snake/tail_down.png",
-          srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
-  static Future<Sprite> get snakeTailLeft =>
-      Sprite.load("snake/tail_left.png",
-          srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
-  static Future<Sprite> get snakeTailRight =>
-      Sprite.load("snake/tail_right.png",
-          srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
-  static Future<Sprite> get snakeTailUp =>
-      Sprite.load("snake/tail_up.png",
+      _loadSprite("snake/body_bottomright");
+
+  static Future<Sprite> get snakeTailDown => _loadSprite("snake/tail_down");
+
+  static Future<Sprite> get snakeTailLeft => _loadSprite("snake/tail_left");
+
+  static Future<Sprite> get snakeTailRight => _loadSprite("snake/tail_right");
+
+  static Future<Sprite> get snakeTailUp => _loadSprite("snake/tail_up");
+
+  static Future<Sprite> _loadSprite(String name) async =>
+      Sprite.load("$name.png",
           srcPosition: Vector2(0, 0), srcSize: Vector2(40, 40));
 }

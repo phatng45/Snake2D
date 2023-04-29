@@ -87,7 +87,6 @@ class World extends DynamicFpsPositionComponent with HasGameRef<SnakeGame> {
 
   void _initializeSnake() {
     var headIndex = GameConfig.headIndex;
-    var snakeLength = GameConfig.initialSnakeLength;
     var head = _grid.findCell(headIndex.x.toInt(), headIndex.y.toInt());
     var firstBody =
         _grid.findCell(headIndex.x.toInt() - 1, headIndex.y.toInt());
@@ -97,7 +96,6 @@ class World extends DynamicFpsPositionComponent with HasGameRef<SnakeGame> {
     _snake.addCell(head, firstBody, tail);
   }
 
-  //TODO use vector addition instead of a switch
   Cell _getNextCell() {
     var row = _snake.head.row;
     var column = _snake.head.column;

@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
-import 'package:snake_2d/game/config/game_config.dart';
 
+import '../config/game_config.dart';
 import '../config/styles.dart';
 import '../snake_game.dart';
 

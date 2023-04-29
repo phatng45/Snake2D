@@ -1,8 +1,8 @@
-import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 
 import 'component/background.dart';
+import 'component/cell.dart';
 import 'component/world.dart';
 import 'config/game_config.dart';
 import 'snake/grid.dart';
@@ -21,18 +21,19 @@ class SnakeGame extends FlameGame with TapDetector {
 
     add(BackGround(GameConfig.cellSize));
 
-    // ignore: avoid_function_literals_in_foreach_calls
-    grid.cells.forEach((rows) => rows.forEach((cell) => add(cell)));
+    for (List<Cell> rows in grid.cells) {
+      for (Cell cell in rows) {
+        add(cell);
+      }
+    }
     grid.generateFood();
 
     world = World(grid);
     add(world);
 
-    return null;
+    return;
   }
 
   @override
-  void onTapUp(TapUpInfo info) {
-    world.onTapUp(info);
-  }
+  void onTapUp(TapUpInfo info) => world.onTapUp(info);
 }

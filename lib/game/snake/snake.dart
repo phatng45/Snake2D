@@ -16,13 +16,14 @@ class Snake {
   Cell firstBody = Cell.zero;
 
   void move(Cell nextCell) {
-    _removeLast();
+    snakeBody.last.cell.cellType = CellType.empty;
+    snakeBody.remove(snakeBody.last);
     grow(nextCell);
     // _updateTail(); // BUG
   }
 
   void grow(Cell nextCell) {
-    _addFirst(nextCell, head, firstBody);
+    snakeBody.addFirst(SnakeBodyPart.fromCell(nextCell, head, firstBody));
     firstBody = head;
     head = nextCell;
   }
@@ -40,40 +41,27 @@ class Snake {
   void setHead(Cell cell) {
     head = cell;
     cell.cellType = CellType.snakeHeadRight;
-    _add(SnakeBodyPart(cell));
+    snakeBody.add(SnakeBodyPart(cell));
   }
 
   void setFirstBody(Cell cell) {
     firstBody = cell;
     cell.cellType = CellType.snakeBodyHorizontal;
-    _add(SnakeBodyPart(cell));
+    snakeBody.add(SnakeBodyPart(cell));
   }
 
-  bool isHorizontal() {
-    return direction == Direction.left || direction == Direction.right;
-  }
+  bool isHorizontal() =>
+      direction == Direction.left || direction == Direction.right;
 
   Vector2 displacementToHead(Vector2 reference) {
     return reference - head.location;
   }
 
   void addCell(Cell next, Cell current, Cell previous) {
-    _add(SnakeBodyPart.fromCell(next, current, previous));
+    snakeBody.add(SnakeBodyPart.fromCell(next, current, previous));
   }
 
-  void _add(SnakeBodyPart part) {
-    snakeBody.add(part);
-  }
-
-  void _addFirst(Cell cell, Cell pCell, Cell ppCell) {
-    snakeBody.addFirst(SnakeBodyPart.fromCell(cell, pCell, ppCell));
-  }
-
-  void _removeLast() {
-    snakeBody.last.cell.cellType = CellType.empty;
-    snakeBody.remove(snakeBody.last);
-  }
-
+  // ignore: unused_element
   void _updateTail() {
     var previousLastCellType = snakeBody.last.previous?.cell.cellType;
     var tail = snakeBody.last.cell;
@@ -88,6 +76,7 @@ class Snake {
         }
         // tail.cellType = CellType.snakeTailRight;
         break;
+
       case CellType.snakeHeadRight:
       case CellType.snakeBodyTopLeft:
         if (head.cellType == CellType.snakeHeadUp) {
@@ -97,6 +86,7 @@ class Snake {
         }
         // tail.cellType = CellType.snakeTailLeft;
         break;
+
       case CellType.snakeBodyBottomLeft:
       case CellType.snakeHeadUp:
         if (head.cellType == CellType.snakeHeadLeft) {
@@ -104,10 +94,9 @@ class Snake {
         } else {
           tail.cellType = CellType.snakeTailLeft;
         }
-
         // tail.cellType = CellType.snakeTailDown;
-
         break;
+
       case CellType.snakeHeadDown:
       case CellType.snakeBodyTopRight:
         if (head.cellType == CellType.snakeHeadRight) {
@@ -115,7 +104,6 @@ class Snake {
         } else {
           tail.cellType = CellType.snakeTailRight;
         }
-
         // tail.cellType = CellType.snakeTailUp;
         break;
 
@@ -125,14 +113,23 @@ class Snake {
         } else {
           tail.cellType = CellType.snakeTailUp;
         }
-
         break;
+
       case CellType.snakeBodyHorizontal:
         if (head.cellType == CellType.snakeHeadLeft) {
           tail.cellType = CellType.snakeTailRight;
         } else {
           tail.cellType = CellType.snakeTailLeft;
         }
+        break;
+
+      case CellType.empty:
+      case CellType.apple:
+      case CellType.snakeTailLeft:
+      case CellType.snakeTailRight:
+      case CellType.snakeTailUp:
+      case CellType.snakeTailDown:
+      case null:
         break;
     }
   }

@@ -1,7 +1,6 @@
 import 'package:flame/components.dart';
 
 abstract class DynamicFpsPositionComponent extends PositionComponent {
-
   double _fps = 60;
   double _targetDt = 1 / 60;
   double _dtTotal = 0;

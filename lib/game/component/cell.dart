@@ -45,7 +45,7 @@ class Cell extends PositionComponent with HasGameRef<SnakeGame> {
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    var start = gameRef.offSets.start;
+    Vector2 start = gameRef.offSets.start;
     _location =
         Vector2(column * _cellSize + start.x, row * _cellSize + start.y);
 

@@ -17,5 +17,5 @@ class Styles {
     ..style = PaintingStyle.stroke
     ..strokeWidth = 10;
 
-  static Paint grass3 =const PaletteEntry(Color(0xFF578a34)).paint();
+  static Paint grass3 = const PaletteEntry(Color(0xFF578a34)).paint();
 }
